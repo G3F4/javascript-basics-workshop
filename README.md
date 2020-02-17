@@ -172,6 +172,22 @@ WarsawJs Workshop#41 - JavaScript basics
         - add event listener for `click` event
             - change active view to welcome view
             - call `render`
+            
+## Storing game state using object
+
+1. Create object named `gameState`
+    - example:
+    ```javascript
+    const objectName = {
+       key1: 'value',
+       key2: 123,
+    }
+    ```
+2. Add field `name` with initial value `''`
+3. Add field `activeView` with initial value `welcome`
+4. Change all usage of `name` and `activeView` variables to use `gameState` object
+5. Delete unused variables
+5. Check browser to see if everything works
 
 ## Splitting styles and scripts to separate file
 - How to link external style sheet (css)?
