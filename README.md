@@ -124,23 +124,19 @@ WarsawJs Workshop#41 - JavaScript basics
     - initialize variable with value `welcome`
 2. Create function called `render` with no arguments
 3. Inside `render` function clear game content
-4. Inside `render` function add `switch` statement
-    - example `switch` statement:
-    ```javascript
-       switch (value) {
-         case 'option1': {
-           // do something
-           break;
-         }
-         case 'option2': {
-           // ...
-           break;
-         }
-         default: {
-           // default action
-         }     
-       }
-    ```
+4. Inside `render` check which view render
+    - use `if` with `else if` and `else` statement
+        - example `if` statement:
+        ```javascript
+        if (condition1) {
+          // do something
+        } else if (condition2) {
+          // do something else
+        } else {
+          // if all conditions are false
+          // do something
+        }
+        ```
     - create case for value `welcome`
         - call `welcomeView` function
     - create default fallback
@@ -161,7 +157,7 @@ WarsawJs Workshop#41 - JavaScript basics
 
 ## Views loop
 
-1. Inside `playView` create button with text `Give up`
+1. Inside `playView` create button with text `Finish`
     - listen for `click` event
         - change `activeView` value to `endGame`
         - call `render` function
@@ -266,6 +262,36 @@ WarsawJs Workshop#41 - JavaScript basics
 9. Append span to letters container
 10. Append letters container to view before buttons container
 
+## Detecting game end - unary operator and string template
+
+1. Inside play view add mutable variable for storing count of visible letters
+    - initialize it with number `0`
+2. While iterating over phrase letters
+    - use `if` statement to check if letter is visible and if it is - increase count of visible letters
+        - use unary operator `number++`
+3. After iterating all letters check if visible letters count is equal to secret phrases length
+    - if condition is true, update state
+        - set active view to `endGame`
+        - set `selectedLetters` back to empty array  
+4. Add to game state new field `mistakes` and initialize it with number `0`
+5. Inside letter button listener check if clicked letter was mistake
+    - use string method `indludes`
+        - example
+        ```javascript
+        'abc'.includes('a'); // -> true
+        ```
+  - store check result in variable
+6. Increase mistakes count if letter button was mistake
+    - use ternary expression
+    - for good click don't change value
+7. In end view create `h3` element
+    - use string template to iterpolate message for user, containg inforation about mistakes count
+    - example string template
+    ```javascript
+    const foo = 123;
+    const text = `count: ${foo}`;
+    ```
+  
 ## Splitting styles and scripts to separate file
 - How to link external style sheet (css)?
 - How to link external or local script from another file?
