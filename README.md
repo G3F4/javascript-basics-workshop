@@ -6,11 +6,6 @@ WarsawJs Workshop#41 - JavaScript basics
 - What is CSS?
 - What is JavaScript?
 
-## Where it starts
-- What is navigation in browser?
-- Why `index.html` is important?
-- What is navigation and how it works?
-
 ## First steps
 - What are html document main parts?
 - How can i style elements on my site?
@@ -420,33 +415,6 @@ WarsawJs Workshop#41 - JavaScript basics
 4. Choose `master` branch as source
 5. Done! Go to `username.gitbub.io/project-name`
   
-## Splitting styles and scripts to separate file
-- How to link external style sheet (css)?
-- How to link external or local script from another file?
-- What is JavaScript module? And how to link multiple JS files?
-
-## Loading data
-- How to load data on client side from static files?
-- How to load data on client side from api?
-- What is application state and do i need one?
-
-## Creating template for dynamic HTML content
-- What is template tag?
-- Using template to dynamically show content
-
-## [Extra] Hosting static page on GitHub Pages
-- What is gh-pages?
-- How can i use it?
-
-## [Extra] Server side vs client side
-- What is server side?
-- What is client side?
-- Where the work is done?
-
-
-
-
-
 ## Dictionary
 - Tag/TagName - html element name, for example `div`
 - Element/node - using proper tags You can create elements for example `<div>hello</div>`
