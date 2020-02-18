@@ -47,9 +47,12 @@ WarsawJs Workshop#41 - JavaScript basics
         `console.log('game script loaded');`
     - check browser console in devTools to see if message is printed
     
-## Manipulating DOM
+## Manipulating DOM 
+- calling `document` functions
+- storing data references using `const`
+- assigning new values
 
-1. Add `id` attribute with value `gameContent` to `div` inside `body` to be able to find this element easlily in javascript code
+1. Add `id` attribute with value `gameContent` to `div` inside `body` to be able to find this element easily in javascript code
 2. Inside `game.js`:
     - Using built-in function `document.getElementById` find `div` with id `gameContent`
         - `document.getElementById` function takes one parameter - element id
@@ -68,7 +71,9 @@ WarsawJs Workshop#41 - JavaScript basics
             - `element.appendChild(childElement);`
     - Check browser to see changes. Investigate Element tab in devTools to see html structure
 
-## Listing for elements events
+## Handling user input - listening for elements events
+- inline functions
+- printing to browser console
 
 1. Create `div` element with text `Enter your name:`
     - store reference using `const`
@@ -89,6 +94,7 @@ WarsawJs Workshop#41 - JavaScript basics
 5. Try entering some text and see if console is printing text entered in input
 
 ## Storing mutable value with `let`
+- mutable reference
 
 1. Create variable for storing value from input
     - to store mutable value use `let`
@@ -98,6 +104,7 @@ WarsawJs Workshop#41 - JavaScript basics
 3. After assigning print value of created variable, instead directly reading from event
 
 ## Defining own functions
+- `function` keyword
 
 1. Create function called `welcomeView`, that takes no arguments
     - To create function use key word `function` followed by function name and than round parenthesis
@@ -114,7 +121,10 @@ WarsawJs Workshop#41 - JavaScript basics
     - check browser, there should be no visible changes
     
 ## Abstracting rendering
-
+- `if` statement
+    - and `else if`
+    - and `else`
+    
 1. Create mutable variable for storing active view name
     - initialize variable with value `welcome`
 2. Create function called `render` with no arguments
@@ -139,6 +149,7 @@ WarsawJs Workshop#41 - JavaScript basics
 5. Check browser if there is still no changes in application visually
 
 ## Changing view
+- contacting strings
 
 1. Inside `welcomeView` create button with text `Play game!`
 2. Add event listener for event `click`
@@ -165,6 +176,7 @@ WarsawJs Workshop#41 - JavaScript basics
             - call `render`
             
 ## Storing game state using object
+- objects
 
 1. Create object named `gameState`
     - example:
@@ -181,10 +193,11 @@ WarsawJs Workshop#41 - JavaScript basics
 5. Check browser to see if everything works
 
 ## SPA like updating content
+- Updating objects
 
 1. At the begging of every view create empty `div`
-2. Append all element to created `div` instead of global `gameContent` variable holding referance to root element
-3. At the of of every function return `div` created at the begining
+2. Append all element to created `div` instead of global `gameContent` variable holding reference to root element
+3. At the of of every function return `div` created at the beginning
 4. Create function `stateUpdate` with body below:
     ```javascript
     function stateUpdate(newGameState) {
@@ -197,18 +210,20 @@ WarsawJs Workshop#41 - JavaScript basics
     - second argument named `stateUpdate`
 6. Pass `gameState` and `stateUpdate` to every view call
 7. Change `gameState` usage inside views to `state`
-8. Change lines modifiyng `gameState` with call to `stateUpdate`
-9. Check browser to see that input wont change value - everything else should work as previoulsy
+8. Change lines modifying `gameState` with call to `stateUpdate`
+9. Check browser to see that input wont change value - everything else should work as previously
 
-## Restoring input focus and cursor position
+## Restoring input focus and cursor position - browser event loop
+- delaying tasks
 
 1. Inside `welcomeView`, after creating input element add call to `setTimeout` global function
 2. Set input value using `state.name`
 3. Focus element using `focus` method on element
 4. Move cursor to end of the text by setting `selectionStart` attribute of input
-5. Check input behaviuur in brwoser
+5. Check input behaviour in browser
 
 ## Selecting letters - arrays
+- Arrays
 
 1. At the begininng of file create variable to store all alphabet letters using array
     - example array syntax
