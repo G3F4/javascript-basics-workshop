@@ -2,12 +2,21 @@ console.log(['game script loaded.']);
 
 const allLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
+const phrases = ['test it like it is hot', 'super duper test'];
+
+function randomPhrase() {
+  const phraseIndex = Math.floor(Math.random() * phrases.length);
+  
+  return phrases[phraseIndex];
+}
+
 const gameContent = document.getElementById('gameContent');
 
 const gameState = {
   name: '',
   activeView: 'welcome',
   selectedLetters: [],
+  secretPhrase: '',
 };
 
 function welcomeView(state, stateUpdate) {
@@ -31,7 +40,7 @@ function welcomeView(state, stateUpdate) {
   const playButton = document.createElement('button');
   playButton.textContent = 'Play game!';
   playButton.addEventListener('click', () => {
-    stateUpdate({ activeView: 'play' });
+    stateUpdate({ activeView: 'play', secretPhrase: randomPhrase() });
   });
   
   viewContent.appendChild(viewTitle);
@@ -53,6 +62,15 @@ function playView(state, stateUpdate) {
     stateUpdate({ activeView: 'endGame' });
   });
   
+  const phraseLettersContainer = document.createElement('div');
+  const phraseLetters = state.secretPhrase.split('');
+  phraseLetters.forEach(phraseLetter => {
+    const phraseLetterSpan = document.createElement('span');
+    const phraseLetterVisible = phraseLetter === ' ' || state.selectedLetters.includes(phraseLetter);
+    
+    phraseLetterSpan.textContent = phraseLetterVisible ? phraseLetter : '*';
+    phraseLettersContainer.appendChild(phraseLetterSpan);
+  });
   
   const buttonsContainer = document.createElement('div');
   allLetters.forEach(letter => {
@@ -70,6 +88,7 @@ function playView(state, stateUpdate) {
   });
   
   viewContent.appendChild(hiMessage);
+  viewContent.appendChild(phraseLettersContainer);
   viewContent.appendChild(buttonsContainer);
   viewContent.appendChild(giveUpButton);
   

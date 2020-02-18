@@ -237,6 +237,35 @@ WarsawJs Workshop#41 - JavaScript basics
     - append button to buttons container
 5. Append buttons container to view content
 
+## Phrases - logic operators, randomness
+
+1. Create array for holding phrases that user will be guessing
+2. Create function for getting random phrase
+    - create variable for holding random phrases array index
+        - Use `Math.floor` and `Math.random` and phrases array length
+        - return phrase at found index
+3. Add new field to game state called `sectetPhrase` with initial value empty string
+4. Inside `welcomeView` and button click listener update state so sectetPhrase inside game state will be random phrase
+    - call previously created function 
+5. Inside `playView` create container for phrase letters (`div`)
+6. Split `state.secretPhrase` into array holding single letter
+    - use string method `split(seperator)`
+    - split by empty string
+7. Iterate over every letter
+    - create span element
+    - check if letter is visible
+        - is it visible if letter is space character
+        - is it visible it letter is included in `state.selectedLetters`
+        - use OR operator `||`
+8. Set element text using previously calculated value (is letter visible) and ternary expression
+    - example ternary expression:
+    ```text
+    condition ? ifConditionTrue : ifConditionFalse
+    ```
+   - use asterisk character `*`  for hidden letters
+9. Append span to letters container
+10. Append letters container to view before buttons container
+
 ## Splitting styles and scripts to separate file
 - How to link external style sheet (css)?
 - How to link external or local script from another file?
