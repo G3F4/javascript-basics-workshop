@@ -217,6 +217,26 @@ WarsawJs Workshop#41 - JavaScript basics
 4. Move cursor to end of the text by setting `selectionStart` attribute of input
 5. Check input behaviuur in brwoser
 
+## Selecting letters - arrays
+
+1. At the begininng of file create variable to store all alphabet letters using array
+    - example array syntax
+    ```javascript
+    const array = ['element1', 'element2'];
+    ```
+   - use english alphabet
+2. Add to `gameState` object new field `selectedLetters`, and initialize it with empty array
+3. Inside `playView` create `div` element for storing letters buttons
+4. Iterate over all letters and create `button` element
+    - set button text to equal iterated letter
+    - set `disabled` attribute by checking in `state.selectedLetters` includes iterated letter
+        - use array method `includes` which takes one argument - element in array you are looking for
+    - add event listener for click event for every letter button
+        - on click, update state so `state.selectedLetters` includes clicked letter
+            - use array method `concat`
+    - append button to buttons container
+5. Append buttons container to view content
+
 ## Splitting styles and scripts to separate file
 - How to link external style sheet (css)?
 - How to link external or local script from another file?

@@ -1,10 +1,13 @@
 console.log(['game script loaded.']);
 
+const allLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
 const gameContent = document.getElementById('gameContent');
 
 const gameState = {
   name: '',
   activeView: 'welcome',
+  selectedLetters: [],
 };
 
 function welcomeView(state, stateUpdate) {
@@ -50,7 +53,24 @@ function playView(state, stateUpdate) {
     stateUpdate({ activeView: 'endGame' });
   });
   
+  
+  const buttonsContainer = document.createElement('div');
+  allLetters.forEach(letter => {
+    const letterButton = document.createElement('button');
+    const letterSelected = state.selectedLetters.includes(letter);
+    letterButton.disabled = letterSelected;
+    letterButton.textContent = letter;
+    letterButton.addEventListener('click', () => {
+      stateUpdate({
+        selectedLetters: state.selectedLetters.concat(letter)
+      });
+    });
+  
+    buttonsContainer.appendChild(letterButton);
+  });
+  
   viewContent.appendChild(hiMessage);
+  viewContent.appendChild(buttonsContainer);
   viewContent.appendChild(giveUpButton);
   
   return viewContent;
@@ -80,7 +100,7 @@ function stateUpdate(newGameState) {
 
 function render() {
   gameContent.textContent = '';
-
+  
   switch (gameState.activeView) {
     case 'welcome': {
       gameContent.appendChild(welcomeView(gameState, stateUpdate));
