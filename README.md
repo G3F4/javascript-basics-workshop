@@ -189,6 +189,34 @@ WarsawJs Workshop#41 - JavaScript basics
 5. Delete unused variables
 5. Check browser to see if everything works
 
+## SPA like updating content
+
+1. At the begging of every view create empty `div`
+2. Append all element to created `div` instead of global `gameContent` variable holding referance to root element
+3. At the of of every function return `div` created at the begining
+4. Create function `stateUpdate` with body below:
+    ```javascript
+    function stateUpdate(newGameState) {
+      Object.assign(gameState, newGameState);
+      render();
+    }
+    ```
+5. Add 2 arguments to all views functions
+    - first argument named `state`
+    - second argument named `stateUpdate`
+6. Pass `gameState` and `stateUpdate` to every view call
+7. Change `gameState` usage inside views to `state`
+8. Change lines modifiyng `gameState` with call to `stateUpdate`
+9. Check browser to see that input wont change value - everything else should work as previoulsy
+
+## Restoring input focus and cursor position
+
+1. Inside `welcomeView`, after creating input element add call to `setTimeout` global function
+2. Set input value using `state.name`
+3. Focus element using `focus` method on element
+4. Move cursor to end of the text by setting `selectionStart` attribute of input
+5. Check input behaviuur in brwoser
+
 ## Splitting styles and scripts to separate file
 - How to link external style sheet (css)?
 - How to link external or local script from another file?
