@@ -291,6 +291,23 @@ WarsawJs Workshop#41 - JavaScript basics
     const foo = 123;
     const text = `count: ${foo}`;
     ```
+   
+## Persisting game state - localStorage, JSON api
+
+1. Create variable for persisted game state from local storage
+    - initialize it with loaded item from local storage
+    - example
+    ```javascript
+    const storedValue = localStorage.getItem('key');
+    ```
+2. While initializing game state variable check if loaded game state from local storage is not empty and use this value to initialize game state
+    - use ternary expression while assigning value
+    - parse value using JSON api
+        - use `parse` method from api to parse string into object
+3. Update `stateUpdate` function so it updates local storage on every state update
+    - use `setItem` method from local storage api
+    - parse game state object to string using JSON api
+        - use `stringify` method 
   
 ## Splitting styles and scripts to separate file
 - How to link external style sheet (css)?

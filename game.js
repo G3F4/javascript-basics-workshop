@@ -10,9 +10,11 @@ function randomPhrase() {
   return phrases[phraseIndex];
 }
 
+const persistedGameState = localStorage.getItem('gameState');
+
 const gameContent = document.getElementById('gameContent');
 
-const gameState = {
+const gameState = persistedGameState ? JSON.parse(persistedGameState) : {
   name: '',
   activeView: 'welcome',
   selectedLetters: [],
@@ -133,6 +135,7 @@ function endGameView(state, stateUpdate) {
 
 function stateUpdate(newGameState) {
   Object.assign(gameState, newGameState);
+  localStorage.setItem('gameState', JSON.stringify(gameState));
   render();
 }
 
