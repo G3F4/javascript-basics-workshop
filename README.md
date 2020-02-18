@@ -8,7 +8,7 @@ WarsawJs Workshop#41 - JavaScript basics
 
 ## Where it starts
 - What is navigation in browser?
-- Why index.html is important?
+- Why `index.html` is important?
 - What is navigation and how it works?
 
 ## First steps
@@ -308,6 +308,21 @@ WarsawJs Workshop#41 - JavaScript basics
     - use `setItem` method from local storage api
     - parse game state object to string using JSON api
         - use `stringify` method 
+        
+## Split code into separate file using global scope - closures
+
+1. Create separate files for views functions
+2. Add scripts in `index.html`
+    - add before `game.js`
+3. Move code to files
+        
+## Hosting site on github pages
+
+1. Go push changes to github
+2. Go to project settings
+3. Scroll down to `GitHub Pages` section
+4. Choose `master` branch as source
+5. Done! Go to `username.gitbub.io/project-name`
   
 ## Splitting styles and scripts to separate file
 - How to link external style sheet (css)?
