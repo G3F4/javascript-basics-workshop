@@ -315,6 +315,102 @@ WarsawJs Workshop#41 - JavaScript basics
 2. Add scripts in `index.html`
     - add before `game.js`
 3. Move code to files
+
+## Drawing Hangman - template tag
+
+1. Add to `index.html` code below, after `div` with id `gameContent`
+    ```html
+    <template id="hangman">
+        <div class="hangmanContainer">
+            <div class="hangmanRow">
+                <div></div>
+                <div class="hangmanHead"></div>
+                <div></div>
+            </div>
+            <div class="hangmanRow">
+                <div class="hangmanLeftHand"></div>
+                <div class="hangmanBody"></div>
+                <div class="hangmanRightHand"></div>
+            </div>
+            <div class="hangmanRow">
+                <div class="hangmanLeftLeg"></div>
+                <div></div>
+                <div class="hangmanRightLeg"</div>
+        </div>
+        </div>
+    </template>
+    ```
+2. Add styles below to `styles.css`
+    ```css
+    .hangmanContainer {
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .hangmanRow {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .hangmanHead {
+        border: solid 5px;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        opacity: 0;
+    }
+    
+    .hangmanBody {
+        border: solid 3px;
+        height: 20px;
+        opacity: 0;
+    }
+    
+    .hangmanLeftHand {
+        border: solid;
+        transform: rotate(45deg);
+        margin-right: 5px;
+        opacity: 0;
+    }
+    
+    .hangmanRightHand {
+        border: solid;
+        transform: rotate(-45deg);
+        margin-left: 5px;
+        opacity: 0;
+    }
+    
+    .hangmanLeftLeg {
+        border: solid;
+        height: 30px;
+        transform: rotate(25deg);
+        margin-right: 5px;
+        opacity: 0;
+    }
+    
+    .hangmanRightLeg {
+        border: solid;
+        height: 30px;
+        transform: rotate(-25deg);
+        margin-left: 5px;
+        opacity: 0;
+    }
+    ```
+3. Inside play view using `document.querySelector` find `template` element with id `hangman`
+    - store to variable
+4. Clone template using template element method `content.cloneNode`
+    - pass `true` as argument
+5. Find element with class `hangmanHead` inside cloned element using `querySelector` method
+    - pass proper css selector as argument
+    - store it as variable
+6. Repeat process for `hangmanBody`, `hangmanLeftHand`, `hangmanRightHand`, `hangmanLeftLeg`, `hangmanRightLeg`
+7. Set opacity style of every Hangman part
+    - change element style by changing `style` property
+        - change `opacity` style property
+        - check mistakes count and assign proper opacity value for every part
+            - if mistakes count is greater than `0` set head opacity to `'1'`
+            - for every mistake show one part more
         
 ## Hosting site on github pages
 
