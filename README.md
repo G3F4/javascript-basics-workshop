@@ -276,36 +276,50 @@ WarsawJs Workshop#41 - JavaScript basics
     - append button to buttons container
 5. Append buttons container to view content
 
-## Phrases - logic operators, randomness
+## Phrases
 
-1. Create array for holding phrases that user will be guessing
+- array function iterating
+- logic operators
+- randomness
+
+1. At the beginning of file create array for holding phrases that user will be guessing
 2. Create function for getting random phrase
     - create variable for holding random phrases array index
         - Use `Math.floor` and `Math.random` and phrases array length
         - return phrase at found index
-3. Add new field to game state called `sectetPhrase` with initial value empty string
-4. Inside `welcomeView` and button click listener update state so sectetPhrase inside game state will be random phrase
-    - call previously created function 
+3. Add new field to game state called `secretPhrase` with initial value empty string
+4. Inside `welcomeView` and button click listener
+    - update state so `secretPhrase` inside game state will be random phrase
+        - use previously created function to get random phrase
 5. Inside `playView` create container for phrase letters (`div`)
 6. Split `state.secretPhrase` into array holding single letter
-    - use string method `split(seperator)`
-    - split by empty string
+    - use string method `string.split(seperator)`
+    - split by empty string `''`
 7. Iterate over every letter
+    - use array function to iterate:
+    ```javascript
+    [1,2,3].forEach(number => {
+       // iterates 3 times, every time argument `number` holding another element from iterated array
+    }) 
+    ```
     - create span element
     - check if letter is visible
-        - is it visible if letter is space character
-        - is it visible it letter is included in `state.selectedLetters`
+        - it is visible if letter is space character
+        - OR it is visible if letter is included in `state.selectedLetters`
         - use OR operator `||`
-8. Set element text using previously calculated value (is letter visible) and ternary expression
+8. Set element text using previously calculated value (is letter visible) with ternary expression
     - example ternary expression:
     ```text
-    condition ? ifConditionTrue : ifConditionFalse
+    const result = condition ? ifConditionTrue : ifConditionFalse
     ```
    - use asterisk character `*`  for hidden letters
 9. Append span to letters container
-10. Append letters container to view before buttons container
+10. Append letters container to view before letters buttons container
 
-## Detecting game end - unary operator and string template
+## Detecting game end
+
+- unary operator
+- string template
 
 1. Inside play view add mutable variable for storing count of visible letters
     - initialize it with number `0`
