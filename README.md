@@ -474,6 +474,16 @@ WarsawJs Workshop#41 - JavaScript basics
             - if mistakes count is greater than `0` set head opacity to `'1'`
             - for every mistake show one part more
         
+## Split code into separate files
+ 
+- global scope
+- closures
+
+1. Create separate files for views functions
+2. Add scripts in `index.html`
+    - add before `game.js`
+3. Move code to files
+        
 ## Hosting site on github pages
 
 1. Go push changes to github
@@ -481,13 +491,6 @@ WarsawJs Workshop#41 - JavaScript basics
 3. Scroll down to `GitHub Pages` section
 4. Choose `master` branch as source
 5. Done! Go to `username.gitbub.io/project-name`
-        
-## Split code into separate file using global scope - closures
-
-1. Create separate files for views functions
-2. Add scripts in `index.html`
-    - add before `game.js`
-3. Move code to files
   
 ## Dictionary
 - Tag/TagName - html element name, for example `div`
