@@ -6,12 +6,7 @@ WarsawJs Workshop#41 - JavaScript basics
 - What is CSS?
 - What is JavaScript?
 
-## First steps
-- What are html document main parts?
-- How can i style elements on my site?
-- Where i can put script in my page?
-
-### Initial setup steps
+### Application entry point
 
 1. Create empty file `index.html`
 2. Fill basic `html` document with `head` and `body` with sample text `hello world from html`
@@ -21,7 +16,7 @@ WarsawJs Workshop#41 - JavaScript basics
         - add `meta` tag with attribute `charset` with value `utf-8` to set page encoding
         - add `title` tag with children equal `Play Hangman!`
 3. Inside `body` add `div` with text `Test!`
-4. Open file in browser to see if it works. Page should be blank, but title of window in Tab should be as You defined in `title` tag
+4. Open file in browser to see if it works. You should see text from `div` element and title of window in Tab should be as You defined in `title` tag
 
 ## Linking style sheet and scripts
 
