@@ -22,8 +22,9 @@ WarsawJs Workshop#41 - JavaScript basics
 
 ## Linking files
 
-- Loading stylesheets
-- Loading scripts
+- loading stylesheets
+- loading scripts
+- printing to browser console
 
 1. Create empty file called `styles.css`
     - Add styling for `body`. You can create style rule with template below:
@@ -52,6 +53,7 @@ WarsawJs Workshop#41 - JavaScript basics
 ## Manipulating DOM 
 
 - finding DOM element with `id` attribute
+- appending node to DOM
 - calling function
 - `document` built-in functions
 - storing data references using `const`
@@ -77,25 +79,27 @@ WarsawJs Workshop#41 - JavaScript basics
             - `element.appendChild(childElement);`
     - Check browser to see changes. Investigate Element tab in devTools to see html structure
 
-## Handling user input - listening for elements events
+## Handling user input
+
+- listening for elements events
 - inline functions
-- printing to browser console
 
 1. Create `div` element with text `Enter your name:`
     - store reference using `const`
 2. Create `input` element
+    - store reference using `const`
 3. Add event listener to `input` element
     - to add event listener to element use element method `addEventListener`
         - first argument of this method is event name, listen for an user input event which value is `input`
         - second argument is function which will be called every times element fires proper event
-        - inside event listener function add call to `console.log` and print value of event target
-            - event listener function first argument is event object which describes event that took place
-            - example:
-            ```javascript
-              nameInput.addEventListener('input', event => {
-                   console.log(event.target.value)
-              });
-            ``` 
+            - inside event listener function add call to `console.log` and print value of event target
+                - event listener function first argument is event object which describes event that took place
+                - example:
+                ```javascript
+                  nameInput.addEventListener('input', event => {
+                       console.log(event.target.value);
+                  });
+                ``` 
 4. Append new elements to `div` with game content
 5. Try entering some text and see if console is printing text entered in input
 
