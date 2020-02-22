@@ -375,15 +375,10 @@ WarsawJs Workshop#41 - JavaScript basics
         ```javascript
         const stringifiedObject = JSON.stringify({ a: true }); // -> '{ "a": true }'
         ```
-        
-## Split code into separate file using global scope - closures
 
-1. Create separate files for views functions
-2. Add scripts in `index.html`
-    - add before `game.js`
-3. Move code to files
+## Drawing Hangman
 
-## Drawing Hangman - template tag
+- template tag
 
 1. Add to `index.html` code below, after `div` with id `gameContent`
     ```html
@@ -486,6 +481,13 @@ WarsawJs Workshop#41 - JavaScript basics
 3. Scroll down to `GitHub Pages` section
 4. Choose `master` branch as source
 5. Done! Go to `username.gitbub.io/project-name`
+        
+## Split code into separate file using global scope - closures
+
+1. Create separate files for views functions
+2. Add scripts in `index.html`
+    - add before `game.js`
+3. Move code to files
   
 ## Dictionary
 - Tag/TagName - html element name, for example `div`

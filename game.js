@@ -66,6 +66,23 @@ function playView(state, stateUpdate) {
   const hiMessage = document.createElement('h1');
   hiMessage.textContent = `Hi, ${state.name}`;
   
+  const hangmanTemplate = document.querySelector('#hangman');
+  const hangmanClone = hangmanTemplate.content.cloneNode(true);
+  
+  const hangmanHead = hangmanClone.querySelector('.hangmanHead');
+  const hangmanBody = hangmanClone.querySelector('.hangmanBody');
+  const hangmanLeftHand = hangmanClone.querySelector('.hangmanLeftHand');
+  const hangmanRightHand = hangmanClone.querySelector('.hangmanRightHand');
+  const hangmanLeftLeg = hangmanClone.querySelector('.hangmanLeftLeg');
+  const hangmanRightLeg = hangmanClone.querySelector('.hangmanRightLeg');
+  
+  hangmanHead.style.opacity = state.mistakes > 0 ? '1' : '0';
+  hangmanBody.style.opacity = state.mistakes > 1 ? '1' : '0';
+  hangmanLeftHand.style.opacity = state.mistakes > 2 ? '1' : '0';
+  hangmanRightHand.style.opacity = state.mistakes > 3 ? '1' : '0';
+  hangmanLeftLeg.style.opacity = state.mistakes > 4 ? '1' : '0';
+  hangmanRightLeg.style.opacity = state.mistakes > 5 ? '1' : '0';
+  
   const phraseLettersContainer = document.createElement('div');
   const phraseLetters = state.secretPhrase.split('');
   let phraseLettersVisibleCount = 0;
@@ -114,6 +131,7 @@ function playView(state, stateUpdate) {
   });
   
   viewContent.appendChild(hiMessage);
+  viewContent.appendChild(hangmanClone);
   viewContent.appendChild(phraseLettersContainer);
   viewContent.appendChild(buttonsContainer);
   viewContent.appendChild(giveUpButton);
