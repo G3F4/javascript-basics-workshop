@@ -8,6 +8,8 @@ WarsawJs Workshop#41 - JavaScript basics
 
 ### Application entry point
 
+- Base html document
+
 1. Create empty file `index.html`
 2. Fill basic `html` document with `head` and `body` with sample text `hello world from html`
     - define `doctype` with value `html`
@@ -18,34 +20,42 @@ WarsawJs Workshop#41 - JavaScript basics
 3. Inside `body` add `div` with text `Test!`
 4. Open file in browser to see if it works. You should see text from `div` element and title of window in Tab should be as You defined in `title` tag
 
-## Linking style sheet and scripts
+## Linking files
 
-1. In `head` inside document, add new tag `link` with 3 attributes
-    - `rel` attribute set linking relation, set value to `stylesheet`
-    - `type` attribute with value `text/css`
-    - `href` attribute with file name to link with value `styles.css`
-2. Create empty file called `styles.css`
+- Loading stylesheets
+- Loading scripts
+
+1. Create empty file called `styles.css`
     - Add styling for `body`. You can create style rule with template below:
         ```text
           [tagName or selector]: {
               [cssProperty]: value;
           }       
         ```
-    - Set rule `family-font` with value `sans-serif`
-    - Check browser to see if stylesheet is loaded. Font should be changed.
-3. Add empty `script` tag with 2 attributes:
+    - Set rule `family-font` with value `sans-serif` for tag `body`
+    - Check browser to see if stylesheet is loaded.
+    - Inspect `div` element
+        - right click on element and choose `Inspect element`
+2. In `head` inside document, add new tag `link` with 3 attributes
+    - `rel` attribute set linking relation, set value to `stylesheet`
+    - `type` attribute with value `text/css`
+    - `href` attribute with file name to link with value `styles.css`
+3. Create empty file `game.js`
+    - inside add following line:
+    `console.log('game script loaded');`
+4. Inside html document add `script` tag with 2 attributes:
     - `type` with value `text/javascript` so browser can parse text as javascript
     - `src` with value `game.js`
-    - Open browser and inside devTools open network tab to see that browsers tries to download missing file
-4. Create empty file `game.js`
-    - inside add following line:
-        `console.log('game script loaded');`
-    - check browser console in devTools to see if message is printed
+    - put script at the end of `body` tag
+5. Check browser console in devTools to see if message is printed
     
 ## Manipulating DOM 
-- calling `document` functions
+
+- finding DOM element with `id` attribute
+- calling function
+- `document` built-in functions
 - storing data references using `const`
-- assigning new values
+- assigning new value
 
 1. Add `id` attribute with value `gameContent` to `div` inside `body` to be able to find this element easily in javascript code
 2. Inside `game.js`:
