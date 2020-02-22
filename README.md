@@ -103,8 +103,11 @@ WarsawJs Workshop#41 - JavaScript basics
 4. Append new elements to `div` with game content
 5. Try entering some text and see if console is printing text entered in input
 
-## Storing mutable value with `let`
-- mutable reference
+## Mutable values
+
+- mutable reference with `let`
+- difference with `const`
+- why `var` no more
 
 1. Create variable for storing value from input
     - to store mutable value use `let`
