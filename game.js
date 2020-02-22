@@ -1,4 +1,4 @@
-console.log(['game script loaded.']);
+console.log('game script loaded');
 
 const persistedGameState = localStorage.getItem('gameState');
 
@@ -20,15 +20,17 @@ function stateUpdate(newGameState) {
 
 function render() {
   gameContent.textContent = '';
+  let viewContent;
   
-  if (gameState.activeView === 'play') {
-    gameContent.appendChild(playView(gameState, stateUpdate));
-  } else if (gameState.activeView === 'endGame') {
-    gameContent.appendChild(endGameView(gameState, stateUpdate));
+  if (gameState.activeView === 'welcome') {
+    viewContent = welcomeView(gameState, stateUpdate);
+  } else if (gameState.activeView === 'play') {
+    viewContent = playView(gameState, stateUpdate);
   } else {
-    gameContent.appendChild(welcomeView(gameState, stateUpdate));
+    viewContent = endGameView(gameState, stateUpdate);
   }
+  
+  gameContent.appendChild(viewContent);
 }
 
 render();
-

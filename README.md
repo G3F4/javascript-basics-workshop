@@ -6,51 +6,58 @@ WarsawJs Workshop#41 - JavaScript basics
 - What is CSS?
 - What is JavaScript?
 
-## First steps
-- What are html document main parts?
-- How can i style elements on my site?
-- Where i can put script in my page?
+### Application entry point
 
-### Initial setup steps
+- Base html document
 
 1. Create empty file `index.html`
-2. Fill basic `html` document with `head` and `body` with sample `hello world from html` text
+2. Fill basic `html` document with `head` and `body` with sample text `hello world from html`
     - define `doctype` with value `html`
     - define `html` document with empty `head` and `body`. Set lang attribute to `en`
     - define `head` content
         - add `meta` tag with attribute `charset` with value `utf-8` to set page encoding
-        - add `title` tag with children equal to Your page title
+        - add `title` tag with children equal `Play Hangman!`
 3. Inside `body` add `div` with text `Test!`
-4. Open file in browser to see if it works. Page should be blank, but title of window in Tab should be as You defined in `title` tag
+4. Open file in browser to see if it works. You should see text from `div` element and title of window in Tab should be as You defined in `title` tag
 
-## Linking style sheet and scripts
+## Linking files
 
-1. In `head` inside document, add new tag `link` with 3 attributes
-    - `rel` attribute set linking relation, set value to `stylesheet`
-    - `type` attribute with value `text/css`
-    - `href` attribute with file name to link with value `styles.css`
-2. Create empty file called `styles.css`
+- loading stylesheets
+- loading scripts
+- printing to browser console
+
+1. Create empty file called `styles.css`
     - Add styling for `body`. You can create style rule with template below:
         ```text
           [tagName or selector]: {
               [cssProperty]: value;
           }       
         ```
-    - Set rule `family-font` with value `sans-serif`
-    - Check browser to see if stylesheet is loaded. Font should be changed.
-3. Add empty `script` tag with 2 attributes:
+    - Set rule `family-font` with value `sans-serif` for tag `body`
+    - Check browser to see if stylesheet is loaded.
+    - Inspect `div` element
+        - right click on element and choose `Inspect element`
+2. In `head` inside document, add new tag `link` with 3 attributes
+    - `rel` attribute set linking relation, set value to `stylesheet`
+    - `type` attribute with value `text/css`
+    - `href` attribute with file name to link with value `styles.css`
+3. Create empty file `game.js`
+    - inside add following line:
+    `console.log('game script loaded');`
+4. Inside html document add `script` tag with 2 attributes:
     - `type` with value `text/javascript` so browser can parse text as javascript
     - `src` with value `game.js`
-    - Open browser and inside devTools open network tab to see that browsers tries to download missing file
-4. Create empty file `game.js`
-    - inside add following line:
-        `console.log('game script loaded');`
-    - check browser console in devTools to see if message is printed
+    - put script at the end of `body` tag
+5. Check browser console in devTools to see if message is printed
     
 ## Manipulating DOM 
-- calling `document` functions
+
+- finding DOM element with `id` attribute
+- appending node to DOM
+- calling function
+- `document` built-in functions
 - storing data references using `const`
-- assigning new values
+- assigning new value
 
 1. Add `id` attribute with value `gameContent` to `div` inside `body` to be able to find this element easily in javascript code
 2. Inside `game.js`:
@@ -66,45 +73,53 @@ WarsawJs Workshop#41 - JavaScript basics
     - To create element use `document.createElement`
         - Pass one argument to function with tagName with value `h1`
         - Set `textContent` attribute with value `Welcome to Hangman!`
+        - store returned value using `const` with name `viewTitle`
     - Append created header element to previously stored found element
         - To append children to element use method `appendChild`
             - `element.appendChild(childElement);`
     - Check browser to see changes. Investigate Element tab in devTools to see html structure
 
-## Handling user input - listening for elements events
+## Handling user input
+
+- listening for elements events
 - inline functions
-- printing to browser console
 
 1. Create `div` element with text `Enter your name:`
-    - store reference using `const`
+    - store reference using `const` with name `nameInputLabel`
 2. Create `input` element
+    - store reference using `const` with name `nameInput`
 3. Add event listener to `input` element
     - to add event listener to element use element method `addEventListener`
         - first argument of this method is event name, listen for an user input event which value is `input`
         - second argument is function which will be called every times element fires proper event
-        - inside event listener function add call to `console.log` and print value of event target
-            - event listener function first argument is event object which describes event that took place
-            - example:
-            ```javascript
-              nameInput.addEventListener('input', event => {
-                   console.log(event.target.value)
-              });
-            ``` 
+            - inside event listener function add call to `console.log` and print value of event target
+                - event listener function first argument is event object which describes event that took place
+                - example:
+                ```javascript
+                  nameInput.addEventListener('input', event => {
+                       console.log(event.target.value);
+                  });
+                ``` 
 4. Append new elements to `div` with game content
 5. Try entering some text and see if console is printing text entered in input
 
-## Storing mutable value with `let`
-- mutable reference
+## Mutable values
 
-1. Create variable for storing value from input
+- mutable reference with `let`
+- difference with `const`
+- why `var` no more
+
+1. Create variable for storing value from input with name `name`
     - to store mutable value use `let`
     - while defining, assign empty string: `''`
     - `let` value can be reassigned while `const` not
 2. Inside input event listener assign value from event to created variable
 3. After assigning print value of created variable, instead directly reading from event
 
-## Defining own functions
-- `function` keyword
+## Encapsulating logic
+
+- defining own functions with `function` keyword
+- functions arguments
 
 1. Create function called `welcomeView`, that takes no arguments
     - To create function use key word `function` followed by function name and than round parenthesis
@@ -115,67 +130,68 @@ WarsawJs Workshop#41 - JavaScript basics
           }
         ```
 2. Move logic to function
-    - creating header
-    - input code
+    - creating header, label and input
+    - event listening
+    - appending to DOM
 3. Call function after defining 
     - check browser, there should be no visible changes
     
 ## Abstracting rendering
+
+- conditions
+- equality - `==` vs `===`
 - `if` statement
-    - and `else if`
-    - and `else`
     
-1. Create mutable variable for storing active view name
+1. Create mutable variable for storing active view name, with name `activeView`
     - initialize variable with value `welcome`
 2. Create function called `render` with no arguments
 3. Inside `render` function clear game content
+    - move line with setting `gameContent.textContent` to empty string
 4. Inside `render` check which view render
     - use `if` with `else if` and `else` statement
         - example `if` statement:
         ```javascript
         if (condition1) {
           // do something
-        } else if (condition2) {
-          // do something else
-        } else {
-          // if all conditions are false
-          // do something
         }
         ```
-    - create case for value `welcome`
-        - call `welcomeView` function
-    - create default fallback
-        - call `welcomeView` function
+    - if `activeView` is equal to `welcome` call `welcomeView`
 5. Check browser if there is still no changes in application visually
 
 ## Changing view
-- contacting strings
 
-1. Inside `welcomeView` create button with text `Play game!`
-2. Add event listener for event `click`
+- contacting strings
+- and `else if`
+
+1. Create function `playView`
+    - inside create `h1` element with text equal to `'Hi, ' + name`
+2. Inside `welcomeView` create button with text `Play game!`
+3. Add event listener for event `click`
     - on every click change value of `activeView` to `play`
     - call `render` function
-3. Create function `playView`
-    - inside create `h1` element with text equal to `'Hi, ' + name`
-4. Add new case inside `render` function for value `play`
+4. Add additional condition statement inside `render` using `else if`, check if `activeView` is equal `play`
     - call `playView` function
-4. Check browser, test if clicking in button with text `Play game!` changes view
+5. Check browser, test if clicking in button with text `Play game!` changes view
 
 ## Views loop
 
-1. Inside `playView` create button with text `Finish`
-    - listen for `click` event
-        - change `activeView` value to `endGame`
-        - call `render` function
-2. Append button to game content
-3. Create function `endGameView` with no arguments
+- `else` statement
+
+1. Create function `endGameView` with no arguments
     - create element `h1` with text `Game finished!`
     - create `button` element with text `Play again`
         - add event listener for `click` event
             - change active view to welcome view
             - call `render`
-            
-## Storing game state using object
+2. Inside `playView` create button with text `Give up`
+    - listen for `click` event
+        - change `activeView` value to `endGame`
+        - call `render` function
+3. Append button to game content
+4. Inside `render` function add `else` statement after `else if` statement with call to `endGameView` function
+
+## Storing game state
+
 - objects
 
 1. Create object named `gameState`
@@ -193,27 +209,36 @@ WarsawJs Workshop#41 - JavaScript basics
 5. Check browser to see if everything works
 
 ## SPA like updating content
+
 - Updating objects
 
-1. At the begging of every view create empty `div`
-2. Append all element to created `div` instead of global `gameContent` variable holding reference to root element
-3. At the of of every function return `div` created at the beginning
-4. Create function `stateUpdate` with body below:
+1. Create function `stateUpdate` with body below:
     ```javascript
     function stateUpdate(newGameState) {
       Object.assign(gameState, newGameState);
       render();
     }
     ```
+2. At the begging of every view create empty `div` called `viewContent`
+3. Append all element to created `div` instead of global `gameContent` variable holding reference to root element
+4. At the end of every view function return `div` created at the beginning
 5. Add 2 arguments to all views functions
     - first argument named `state`
     - second argument named `stateUpdate`
 6. Pass `gameState` and `stateUpdate` to every view call
-7. Change `gameState` usage inside views to `state`
-8. Change lines modifying `gameState` with call to `stateUpdate`
-9. Check browser to see that input wont change value - everything else should work as previously
+7. Change lines modifying `gameState` with call to `stateUpdate`
+    - remove call to `render`
+8. Change `gameState` usage inside views to `state`
+9. Inside render function
+    - add new mutable variable `viewContent` without initializer
+    - inside `if` statement assign returned value to `viewContent`
+    - after `if` statement append `viewContent` to game content
+10. Check browser to see that input wont change value - everything else should work as previously
 
-## Restoring input focus and cursor position - browser event loop
+## Restoring input focus and cursor position
+
+- how browser paints
+- what is focus
 - delaying tasks
 
 1. Inside `welcomeView`, after creating input element add call to `setTimeout` global function
@@ -222,10 +247,12 @@ WarsawJs Workshop#41 - JavaScript basics
 4. Move cursor to end of the text by setting `selectionStart` attribute of input
 5. Check input behaviour in browser
 
-## Selecting letters - arrays
-- Arrays
+## Selecting letters
 
-1. At the begininng of file create variable to store all alphabet letters using array
+- Arrays
+- `for` loop
+
+1. At the beginning of file create variable to store all alphabet letters using array
     - example array syntax
     ```javascript
     const array = ['element1', 'element2'];
@@ -234,6 +261,12 @@ WarsawJs Workshop#41 - JavaScript basics
 2. Add to `gameState` object new field `selectedLetters`, and initialize it with empty array
 3. Inside `playView` create `div` element for storing letters buttons
 4. Iterate over all letters and create `button` element
+    - to iterate overall letters use `for` loop
+    ```javascript
+    for (let i = 0; i < 10; i++) {
+       // iteration for 10 times
+    }
+    ```
     - set button text to equal iterated letter
     - set `disabled` attribute by checking in `state.selectedLetters` includes iterated letter
         - use array method `includes` which takes one argument - element in array you are looking for
@@ -243,36 +276,50 @@ WarsawJs Workshop#41 - JavaScript basics
     - append button to buttons container
 5. Append buttons container to view content
 
-## Phrases - logic operators, randomness
+## Phrases
 
-1. Create array for holding phrases that user will be guessing
+- array function iterating
+- logic operators
+- randomness
+
+1. At the beginning of file create array for holding phrases that user will be guessing
 2. Create function for getting random phrase
     - create variable for holding random phrases array index
         - Use `Math.floor` and `Math.random` and phrases array length
         - return phrase at found index
-3. Add new field to game state called `sectetPhrase` with initial value empty string
-4. Inside `welcomeView` and button click listener update state so sectetPhrase inside game state will be random phrase
-    - call previously created function 
+3. Add new field to game state called `secretPhrase` with initial value empty string
+4. Inside `welcomeView` and button click listener
+    - update state so `secretPhrase` inside game state will be random phrase
+        - use previously created function to get random phrase
 5. Inside `playView` create container for phrase letters (`div`)
 6. Split `state.secretPhrase` into array holding single letter
-    - use string method `split(seperator)`
-    - split by empty string
+    - use string method `string.split(seperator)`
+    - split by empty string `''`
 7. Iterate over every letter
+    - use array function to iterate:
+    ```javascript
+    [1,2,3].forEach(number => {
+       // iterates 3 times, every time argument `number` holding another element from iterated array
+    }) 
+    ```
     - create span element
     - check if letter is visible
-        - is it visible if letter is space character
-        - is it visible it letter is included in `state.selectedLetters`
+        - it is visible if letter is space character
+        - OR it is visible if letter is included in `state.selectedLetters`
         - use OR operator `||`
-8. Set element text using previously calculated value (is letter visible) and ternary expression
+8. Set element text using previously calculated value (is letter visible) with ternary expression
     - example ternary expression:
     ```text
-    condition ? ifConditionTrue : ifConditionFalse
+    const result = condition ? ifConditionTrue : ifConditionFalse
     ```
    - use asterisk character `*`  for hidden letters
 9. Append span to letters container
-10. Append letters container to view before buttons container
+10. Append letters container to view before letters buttons container
 
-## Detecting game end - unary operator and string template
+## Detecting game end and simple scoring
+
+- unary operator
+- string template
 
 1. Inside play view add mutable variable for storing count of visible letters
     - initialize it with number `0`
@@ -285,7 +332,7 @@ WarsawJs Workshop#41 - JavaScript basics
         - set `selectedLetters` back to empty array  
 4. Add to game state new field `mistakes` and initialize it with number `0`
 5. Inside letter button listener check if clicked letter was mistake
-    - use string method `indludes`
+    - use string method `includes`
         - example
         ```javascript
         'abc'.includes('a'); // -> true
@@ -295,16 +342,20 @@ WarsawJs Workshop#41 - JavaScript basics
     - use ternary expression
     - for good click don't change value
 7. In end view create `h3` element
-    - use string template to iterpolate message for user, containg inforation about mistakes count
+    - use string template to interpolate message for user, containing information about mistakes count
     - example string template
     ```javascript
     const foo = 123;
     const text = `count: ${foo}`;
     ```
+8. Clear `mistakes` and `selectedLetters` for every time user click `Play game!` button
    
-## Persisting game state - localStorage, JSON api
+## Persisting game state
 
-1. Create variable for persisted game state from local storage
+- localStorage
+- JSON api
+
+1. Create variable for persisted game state read from local storage
     - initialize it with loaded item from local storage
     - example
     ```javascript
@@ -314,19 +365,20 @@ WarsawJs Workshop#41 - JavaScript basics
     - use ternary expression while assigning value
     - parse value using JSON api
         - use `parse` method from api to parse string into object
+        ```javascript
+        const parsedObject = JSON.parse('{ "a": true }'); // -> { a: true }
+        ```
 3. Update `stateUpdate` function so it updates local storage on every state update
     - use `setItem` method from local storage api
     - parse game state object to string using JSON api
-        - use `stringify` method 
-        
-## Split code into separate file using global scope - closures
+        - use `stringify` method
+        ```javascript
+        const stringifiedObject = JSON.stringify({ a: true }); // -> '{ "a": true }'
+        ```
 
-1. Create separate files for views functions
-2. Add scripts in `index.html`
-    - add before `game.js`
-3. Move code to files
+## Drawing Hangman
 
-## Drawing Hangman - template tag
+- template tag
 
 1. Add to `index.html` code below, after `div` with id `gameContent`
     ```html
@@ -421,6 +473,16 @@ WarsawJs Workshop#41 - JavaScript basics
         - check mistakes count and assign proper opacity value for every part
             - if mistakes count is greater than `0` set head opacity to `'1'`
             - for every mistake show one part more
+        
+## Split code into separate files
+ 
+- global scope
+- closures
+
+1. Create separate files for views functions
+2. Add scripts in `index.html`
+    - add before `game.js`
+3. Move code to files
         
 ## Hosting site on github pages
 

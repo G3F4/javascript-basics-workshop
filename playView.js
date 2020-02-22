@@ -4,7 +4,7 @@ const phrases = ['test it like it is hot', 'super duper test'];
 
 function randomPhrase() {
   const phraseIndex = Math.floor(Math.random() * phrases.length);
-
+  
   return phrases[phraseIndex];
 }
 
@@ -30,12 +30,6 @@ function playView(state, stateUpdate) {
   hangmanLeftLeg.style.opacity = state.mistakes > 4 ? '1' : '0';
   hangmanRightLeg.style.opacity = state.mistakes > 5 ? '1' : '0';
   
-  const giveUpButton = document.createElement('button');
-  giveUpButton.textContent = `Finish`;
-  giveUpButton.addEventListener('click', () => {
-    stateUpdate({ activeView: 'endGame', selectedLetters: [] });
-  });
-  
   const phraseLettersContainer = document.createElement('div');
   const phraseLetters = state.secretPhrase.split('');
   let phraseLettersVisibleCount = 0;
@@ -51,14 +45,10 @@ function playView(state, stateUpdate) {
     phraseLettersContainer.appendChild(phraseLetterSpan);
   });
   
-  if (phraseLettersVisibleCount === state.secretPhrase.length) {
-    stateUpdate({ activeView: 'endGame', selectedLetters: [] });
-    
-    return viewContent;
-  }
-  
   const buttonsContainer = document.createElement('div');
-  allLetters.forEach(letter => {
+  
+  for (let i = 0; i < allLetters.length; i++) {
+    const letter = allLetters[i];
     const letterButton = document.createElement('button');
     const letterSelected = state.selectedLetters.includes(letter);
     letterButton.disabled = letterSelected;
@@ -71,8 +61,20 @@ function playView(state, stateUpdate) {
         mistakes: mistake ? state.mistakes + 1 : state.mistakes,
       });
     });
-  
+    
     buttonsContainer.appendChild(letterButton);
+  }
+  
+  if (phraseLettersVisibleCount === state.secretPhrase.length) {
+    stateUpdate({ activeView: 'endGame', selectedLetters: [] });
+    
+    return viewContent;
+  }
+  
+  const giveUpButton = document.createElement('button');
+  giveUpButton.textContent = `Give up`;
+  giveUpButton.addEventListener('click', () => {
+    stateUpdate({ activeView: 'endGame' });
   });
   
   viewContent.appendChild(hiMessage);
