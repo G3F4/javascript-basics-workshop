@@ -365,10 +365,16 @@ WarsawJs Workshop#41 - JavaScript basics
     - use ternary expression while assigning value
     - parse value using JSON api
         - use `parse` method from api to parse string into object
+        ```javascript
+        const parsedObject = JSON.parse('{ "a": true }'); // -> { a: true }
+        ```
 3. Update `stateUpdate` function so it updates local storage on every state update
     - use `setItem` method from local storage api
     - parse game state object to string using JSON api
-        - use `stringify` method 
+        - use `stringify` method
+        ```javascript
+        const stringifiedObject = JSON.stringify({ a: true }); // -> '{ "a": true }'
+        ```
         
 ## Split code into separate file using global scope - closures
 
