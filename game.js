@@ -36,7 +36,30 @@ function playView() {
   const hiMessage = document.createElement('h1');
   hiMessage.textContent = `Hi, ${name}`;
   
+  const giveUpButton = document.createElement('button');
+  giveUpButton.textContent = `Give up`;
+  giveUpButton.addEventListener('click', () => {
+    activeView = 'endGame';
+    render();
+  });
+  
   gameContent.appendChild(hiMessage);
+  gameContent.appendChild(giveUpButton);
+}
+
+function endGameView() {
+  const endGameHeader = document.createElement('h1');
+  endGameHeader.textContent = 'Game finished!';
+  
+  const playAgain = document.createElement('button');
+  playAgain.textContent = `Play again`;
+  playAgain.addEventListener('click', () => {
+    activeView = 'welcome';
+    render();
+  });
+  
+  gameContent.appendChild(endGameHeader);
+  gameContent.appendChild(playAgain);
 }
 
 function render() {
@@ -46,6 +69,8 @@ function render() {
     welcomeView();
   } else if (activeView === 'play') {
     playView();
+  } else {
+    endGameView();
   }
 }
 

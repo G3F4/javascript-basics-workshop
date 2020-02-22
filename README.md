@@ -175,18 +175,21 @@ WarsawJs Workshop#41 - JavaScript basics
 
 ## Views loop
 
-1. Inside `playView` create button with text `Finish`
-    - listen for `click` event
-        - change `activeView` value to `endGame`
-        - call `render` function
-2. Append button to game content
-3. Create function `endGameView` with no arguments
+- `else` statement
+
+1. Create function `endGameView` with no arguments
     - create element `h1` with text `Game finished!`
     - create `button` element with text `Play again`
         - add event listener for `click` event
             - change active view to welcome view
             - call `render`
-            
+2. Inside `playView` create button with text `Give up`
+    - listen for `click` event
+        - change `activeView` value to `endGame`
+        - call `render` function
+3. Append button to game content
+4. Inside `render` function add `else` statement after `else if` statement with call to `endGameView` function
+
 ## Storing game state using object
 - objects
 
