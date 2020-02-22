@@ -8,6 +8,8 @@ WarsawJs Workshop#41 - JavaScript basics
 
 ### Application entry point
 
+Every projects begins with creating single file! Create application entry point, which will be HTML document file named `index.html`
+
 - Base html document
 
 1. Create empty file `index.html`
@@ -21,6 +23,8 @@ WarsawJs Workshop#41 - JavaScript basics
 4. Open file in browser to see if it works. You should see text from `div` element and title of window in Tab should be as You defined in `title` tag
 
 ## Linking files
+
+We need to separate code into files, according to it's purpose. Connect style sheet and script file to your HTML document.
 
 - loading stylesheets
 - loading scripts
@@ -52,6 +56,10 @@ WarsawJs Workshop#41 - JavaScript basics
     
 ## Manipulating DOM 
 
+To make dynamic pages we need to manipulate DOM. We can edit, add or delete HTML elements.
+Assign unique identifier to `div` element, find it, and change it text content to empty string.
+Then create new element and append it to DOM.
+
 - finding DOM element with `id` attribute
 - appending node to DOM
 - calling function
@@ -81,6 +89,8 @@ WarsawJs Workshop#41 - JavaScript basics
 
 ## Handling user input
 
+Every web application is based on user input events. Handle `input` event in `input` element, to see what character user is typing.
+
 - listening for elements events
 - inline functions
 
@@ -105,6 +115,8 @@ WarsawJs Workshop#41 - JavaScript basics
 
 ## Mutable values
 
+Some values changes over time. Use mutable `let` to store some mutable data.
+
 - mutable reference with `let`
 - difference with `const`
 - why `var` no more
@@ -117,6 +129,8 @@ WarsawJs Workshop#41 - JavaScript basics
 3. After assigning print value of created variable, instead directly reading from event
 
 ## Encapsulating logic
+
+While writing code, it's getting longer and more complicated. Use function to group and encapsulate related logic.
 
 - defining own functions with `function` keyword
 - functions arguments
@@ -137,6 +151,8 @@ WarsawJs Workshop#41 - JavaScript basics
     - check browser, there should be no visible changes
     
 ## Abstracting rendering
+
+Drawing to screen is repeatable process. We need to abstract rendering logic to function.
 
 - conditions
 - equality - `==` vs `===`
@@ -160,6 +176,8 @@ WarsawJs Workshop#41 - JavaScript basics
 
 ## Changing view
 
+Every modern application is capable of changing whole view in instant. Create abstraction for changing view.
+
 - contacting strings
 - and `else if`
 
@@ -174,6 +192,9 @@ WarsawJs Workshop#41 - JavaScript basics
 5. Check browser, test if clicking in button with text `Play game!` changes view
 
 ## Views loop
+
+Every game needs to be endless in terms of state. After ending game, we want to start over.
+Create simple game state loop, so user after ending game, will be backed to welcome view.
 
 - `else` statement
 
@@ -192,6 +213,8 @@ WarsawJs Workshop#41 - JavaScript basics
 
 ## Storing game state
 
+As game grows in logic, it stores more data, keeping it spread out all over code base is disaster. Define all game state as single object.
+
 - objects
 
 1. Create object named `gameState`
@@ -209,6 +232,8 @@ WarsawJs Workshop#41 - JavaScript basics
 5. Check browser to see if everything works
 
 ## SPA like updating content
+
+Create more elastic way of rendering view. Instead of modifying game content, view should return new content to be shown.
 
 - Updating objects
 
@@ -237,6 +262,8 @@ WarsawJs Workshop#41 - JavaScript basics
 
 ## Restoring input focus and cursor position
 
+While creating and destroying elements every time we render our game, browser loses information about input focus and value. Retain input value, focus and cursor position.
+
 - how browser paints
 - what is focus
 - delaying tasks
@@ -248,6 +275,8 @@ WarsawJs Workshop#41 - JavaScript basics
 5. Check input behaviour in browser
 
 ## Selecting letters
+
+Add some real game logic. Draw all alphabet letters in play view, store clicked letters and disable one that were already clicked.
 
 - Arrays
 - `for` loop
@@ -277,6 +306,8 @@ WarsawJs Workshop#41 - JavaScript basics
 5. Append buttons container to view content
 
 ## Phrases
+
+We need so phrase to guess. Create some phrases and make some randomness logic while getting new phrase to guess.
 
 - array function iterating
 - logic operators
@@ -318,6 +349,8 @@ WarsawJs Workshop#41 - JavaScript basics
 
 ## Detecting game end and simple scoring
 
+We need to add some logic for game to end. Every time user sees all letters in phrase - call it end game.
+
 - unary operator
 - string template
 
@@ -352,6 +385,8 @@ WarsawJs Workshop#41 - JavaScript basics
    
 ## Persisting game state
 
+Every time we refresh our page, progress is lost. Persist game state using browser local storage.
+
 - localStorage
 - JSON api
 
@@ -377,6 +412,8 @@ WarsawJs Workshop#41 - JavaScript basics
         ```
 
 ## Drawing Hangman
+
+Lets draw Hangman! Every time, user make another mistake, draw another hangman part.
 
 - template tag
 
@@ -475,6 +512,8 @@ WarsawJs Workshop#41 - JavaScript basics
             - for every mistake show one part more
         
 ## Split code into separate files
+
+Keeping all code in one file is not a good idea. Extract view functions to separate files.
  
 - global scope
 - closures
@@ -485,6 +524,8 @@ WarsawJs Workshop#41 - JavaScript basics
 3. Move code to files
         
 ## Hosting site on github pages
+
+When your work is done, it time to share it with world! Publish your project using GitHub pages
 
 1. Go push changes to github
 2. Go to project settings
