@@ -247,10 +247,12 @@ WarsawJs Workshop#41 - JavaScript basics
 4. Move cursor to end of the text by setting `selectionStart` attribute of input
 5. Check input behaviour in browser
 
-## Selecting letters - arrays
-- Arrays
+## Selecting letters
 
-1. At the begininng of file create variable to store all alphabet letters using array
+- Arrays
+- `for` loop
+
+1. At the beginning of file create variable to store all alphabet letters using array
     - example array syntax
     ```javascript
     const array = ['element1', 'element2'];
@@ -259,6 +261,12 @@ WarsawJs Workshop#41 - JavaScript basics
 2. Add to `gameState` object new field `selectedLetters`, and initialize it with empty array
 3. Inside `playView` create `div` element for storing letters buttons
 4. Iterate over all letters and create `button` element
+    - to iterate overall letters use `for` loop
+    ```javascript
+    for (let i = 0; i < 10; i++) {
+       // iteration for 10 times
+    }
+    ```
     - set button text to equal iterated letter
     - set `disabled` attribute by checking in `state.selectedLetters` includes iterated letter
         - use array method `includes` which takes one argument - element in array you are looking for
