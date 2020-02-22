@@ -209,27 +209,34 @@ WarsawJs Workshop#41 - JavaScript basics
 5. Check browser to see if everything works
 
 ## SPA like updating content
+
 - Updating objects
 
-1. At the begging of every view create empty `div`
-2. Append all element to created `div` instead of global `gameContent` variable holding reference to root element
-3. At the of of every function return `div` created at the beginning
-4. Create function `stateUpdate` with body below:
+1. Create function `stateUpdate` with body below:
     ```javascript
     function stateUpdate(newGameState) {
       Object.assign(gameState, newGameState);
       render();
     }
     ```
+2. At the begging of every view create empty `div` called `viewContent`
+3. Append all element to created `div` instead of global `gameContent` variable holding reference to root element
+4. At the end of every view function return `div` created at the beginning
 5. Add 2 arguments to all views functions
     - first argument named `state`
     - second argument named `stateUpdate`
 6. Pass `gameState` and `stateUpdate` to every view call
-7. Change `gameState` usage inside views to `state`
-8. Change lines modifying `gameState` with call to `stateUpdate`
-9. Check browser to see that input wont change value - everything else should work as previously
+7. Change lines modifying `gameState` with call to `stateUpdate`
+    - remove call to `render`
+8. Change `gameState` usage inside views to `state`
+9. Inside render function
+    - add new mutable variable `viewContent` without initializer
+    - inside `if` statement assign returned value to `viewContent`
+    - after `if` statement append `viewContent` to game content
+10. Check browser to see that input wont change value - everything else should work as previously
 
 ## Restoring input focus and cursor position - browser event loop
+
 - delaying tasks
 
 1. Inside `welcomeView`, after creating input element add call to `setTimeout` global function

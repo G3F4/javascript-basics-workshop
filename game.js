@@ -5,9 +5,15 @@ const gameState = {
   activeView: 'welcome',
 };
 
+function stateUpdate(newGameState) {
+  Object.assign(gameState, newGameState);
+  render();
+}
+
 const gameContent = document.getElementById('gameContent');
 
-function welcomeView() {
+function welcomeView(state, stateUpdate) {
+  const viewContent = document.createElement('div');
   const viewTitle = document.createElement('h1');
   viewTitle.textContent = `Welcome to Hangman!`;
   
@@ -17,62 +23,70 @@ function welcomeView() {
   
   const nameInput = document.createElement('input');
   nameInput.addEventListener('input', event => {
-    gameState.name = event.target.value;
+    stateUpdate({ name: event.target.value });
   });
   
   const playButton = document.createElement('button');
   playButton.textContent = 'Play game!';
   playButton.addEventListener('click', () => {
-    gameState.activeView = 'play';
-    render();
+    stateUpdate({ activeView: 'play' });
   });
   
-  gameContent.appendChild(viewTitle);
-  gameContent.appendChild(nameInputLabel);
-  gameContent.appendChild(nameInput);
-  gameContent.appendChild(playButton);
+  viewContent.appendChild(viewTitle);
+  viewContent.appendChild(nameInputLabel);
+  viewContent.appendChild(nameInput);
+  viewContent.appendChild(playButton);
+  
+  return viewContent;
 }
 
-function playView() {
+function playView(state, stateUpdate) {
+  const viewContent = document.createElement('div');
   const hiMessage = document.createElement('h1');
-  hiMessage.textContent = `Hi, ${gameState.name}`;
+  hiMessage.textContent = `Hi, ${state.name}`;
   
   const giveUpButton = document.createElement('button');
   giveUpButton.textContent = `Give up`;
   giveUpButton.addEventListener('click', () => {
-    gameState.activeView = 'endGame';
-    render();
+    stateUpdate({ activeView: 'endGame' });
   });
   
-  gameContent.appendChild(hiMessage);
-  gameContent.appendChild(giveUpButton);
+  viewContent.appendChild(hiMessage);
+  viewContent.appendChild(giveUpButton);
+  
+  return viewContent;
 }
 
-function endGameView() {
+function endGameView(state, stateUpdate) {
+  const viewContent = document.createElement('div');
   const endGameHeader = document.createElement('h1');
   endGameHeader.textContent = 'Game finished!';
   
   const playAgain = document.createElement('button');
   playAgain.textContent = `Play again`;
   playAgain.addEventListener('click', () => {
-    gameState.activeView = 'welcome';
-    render();
+    stateUpdate({ activeView: 'welcome' });
   });
   
-  gameContent.appendChild(endGameHeader);
-  gameContent.appendChild(playAgain);
+  viewContent.appendChild(endGameHeader);
+  viewContent.appendChild(playAgain);
+  
+  return viewContent;
 }
 
 function render() {
   gameContent.textContent = '';
+  let viewContent;
   
   if (gameState.activeView === 'welcome') {
-    welcomeView();
+    viewContent = welcomeView(gameState, stateUpdate);
   } else if (gameState.activeView === 'play') {
-    playView();
+    viewContent = playView(gameState, stateUpdate);
   } else {
-    endGameView();
+    viewContent = endGameView(gameState, stateUpdate);
   }
+  
+  gameContent.appendChild(viewContent);
 }
 
 render();
