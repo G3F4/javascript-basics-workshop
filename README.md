@@ -190,7 +190,8 @@ WarsawJs Workshop#41 - JavaScript basics
 3. Append button to game content
 4. Inside `render` function add `else` statement after `else if` statement with call to `endGameView` function
 
-## Storing game state using object
+## Storing game state
+
 - objects
 
 1. Create object named `gameState`
