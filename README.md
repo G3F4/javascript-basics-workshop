@@ -316,7 +316,7 @@ WarsawJs Workshop#41 - JavaScript basics
 9. Append span to letters container
 10. Append letters container to view before letters buttons container
 
-## Detecting game end
+## Detecting game end and simple scoring
 
 - unary operator
 - string template
@@ -332,7 +332,7 @@ WarsawJs Workshop#41 - JavaScript basics
         - set `selectedLetters` back to empty array  
 4. Add to game state new field `mistakes` and initialize it with number `0`
 5. Inside letter button listener check if clicked letter was mistake
-    - use string method `indludes`
+    - use string method `includes`
         - example
         ```javascript
         'abc'.includes('a'); // -> true
@@ -342,16 +342,20 @@ WarsawJs Workshop#41 - JavaScript basics
     - use ternary expression
     - for good click don't change value
 7. In end view create `h3` element
-    - use string template to iterpolate message for user, containg inforation about mistakes count
+    - use string template to interpolate message for user, containing information about mistakes count
     - example string template
     ```javascript
     const foo = 123;
     const text = `count: ${foo}`;
     ```
+8. Clear `mistakes` and `selectedLetters` for every time user click `Play game!` button
    
-## Persisting game state - localStorage, JSON api
+## Persisting game state
 
-1. Create variable for persisted game state from local storage
+- localStorage
+- JSON api
+
+1. Create variable for persisted game state read from local storage
     - initialize it with loaded item from local storage
     - example
     ```javascript

@@ -15,6 +15,7 @@ const gameState = {
   activeView: 'welcome',
   selectedLetters: [],
   secretPhrase: '',
+  mistakes: 0,
 };
 
 function stateUpdate(newGameState) {
@@ -46,7 +47,7 @@ function welcomeView(state, stateUpdate) {
   const playButton = document.createElement('button');
   playButton.textContent = 'Play game!';
   playButton.addEventListener('click', () => {
-    stateUpdate({ activeView: 'play', secretPhrase: randomPhrase() });
+    stateUpdate({ activeView: 'play', secretPhrase: randomPhrase(), mistakes: 0, selectedLetters: [] });
   });
   
   viewContent.appendChild(viewTitle);
@@ -64,9 +65,14 @@ function playView(state, stateUpdate) {
   
   const phraseLettersContainer = document.createElement('div');
   const phraseLetters = state.secretPhrase.split('');
+  let phraseLettersVisibleCount = 0;
   phraseLetters.forEach(phraseLetter => {
     const phraseLetterSpan = document.createElement('span');
     const phraseLetterVisible = phraseLetter === ' ' || state.selectedLetters.includes(phraseLetter);
+    
+    if (phraseLetterVisible) {
+      phraseLettersVisibleCount++;
+    }
     
     phraseLetterSpan.textContent = phraseLetterVisible ? phraseLetter : '*';
     phraseLettersContainer.appendChild(phraseLetterSpan);
@@ -81,12 +87,21 @@ function playView(state, stateUpdate) {
     letterButton.disabled = letterSelected;
     letterButton.textContent = letter;
     letterButton.addEventListener('click', () => {
+      const mistake = !state.secretPhrase.includes(letter);
+  
       stateUpdate({
         selectedLetters: state.selectedLetters.concat(letter),
+        mistakes: mistake ? state.mistakes + 1 : state.mistakes,
       });
     });
   
     buttonsContainer.appendChild(letterButton);
+  }
+  
+  if (phraseLettersVisibleCount === state.secretPhrase.length) {
+    stateUpdate({ activeView: 'endGame', selectedLetters: [] });
+    
+    return viewContent;
   }
   
   const giveUpButton = document.createElement('button');
@@ -108,6 +123,9 @@ function endGameView(state, stateUpdate) {
   const endGameHeader = document.createElement('h1');
   endGameHeader.textContent = 'Game finished!';
   
+  const gameScore = document.createElement('h3');
+  gameScore.textContent = `You made ${state.mistakes} mistakes`;
+  
   const playAgain = document.createElement('button');
   playAgain.textContent = `Play again`;
   playAgain.addEventListener('click', () => {
@@ -115,6 +133,7 @@ function endGameView(state, stateUpdate) {
   });
   
   viewContent.appendChild(endGameHeader);
+  viewContent.appendChild(gameScore);
   viewContent.appendChild(playAgain);
   
   return viewContent;
