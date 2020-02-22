@@ -85,9 +85,9 @@ WarsawJs Workshop#41 - JavaScript basics
 - inline functions
 
 1. Create `div` element with text `Enter your name:`
-    - store reference using `const`
+    - store reference using `const` with name `nameInputLabel`
 2. Create `input` element
-    - store reference using `const`
+    - store reference using `const` with name `nameInput`
 3. Add event listener to `input` element
     - to add event listener to element use element method `addEventListener`
         - first argument of this method is event name, listen for an user input event which value is `input`
@@ -109,15 +109,17 @@ WarsawJs Workshop#41 - JavaScript basics
 - difference with `const`
 - why `var` no more
 
-1. Create variable for storing value from input
+1. Create variable for storing value from input with name `name`
     - to store mutable value use `let`
     - while defining, assign empty string: `''`
     - `let` value can be reassigned while `const` not
 2. Inside input event listener assign value from event to created variable
 3. After assigning print value of created variable, instead directly reading from event
 
-## Defining own functions
-- `function` keyword
+## Encapsulating logic
+
+- defining own functions with `function` keyword
+- functions arguments
 
 1. Create function called `welcomeView`, that takes no arguments
     - To create function use key word `function` followed by function name and than round parenthesis
@@ -128,17 +130,19 @@ WarsawJs Workshop#41 - JavaScript basics
           }
         ```
 2. Move logic to function
-    - creating header
-    - input code
+    - creating header, label and input
+    - event listening
+    - appending to DOM
 3. Call function after defining 
     - check browser, there should be no visible changes
     
 ## Abstracting rendering
+
 - `if` statement
-    - and `else if`
-    - and `else`
+- and `else if`
+- and `else`
     
-1. Create mutable variable for storing active view name
+1. Create mutable variable for storing active view name, with name `activeView`
     - initialize variable with value `welcome`
 2. Create function called `render` with no arguments
 3. Inside `render` function clear game content

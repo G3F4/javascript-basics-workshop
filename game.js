@@ -1,24 +1,42 @@
 console.log('game script loaded');
 
+let name = '';
+
 const gameContent = document.getElementById('gameContent');
 
 gameContent.textContent = '';
 
-const viewTitle = document.createElement('h1');
-viewTitle.textContent = `Welcome to Hangman!`;
+function welcomeView() {
+  const viewTitle = document.createElement('h1');
+  viewTitle.textContent = `Welcome to Hangman!`;
+  
+  const nameInputLabel = document.createElement('div');
+  nameInputLabel.textContent = 'Enter your name';
+  
+  
+  const nameInput = document.createElement('input');
+  nameInput.addEventListener('input', event => {
+    name = event.target.value;
+    console.log(name);
+  });
+  
+  gameContent.appendChild(viewTitle);
+  gameContent.appendChild(nameInputLabel);
+  gameContent.appendChild(nameInput);
+}
 
-const nameInputLabel = document.createElement('div');
-nameInputLabel.textContent = 'Enter your name';
+welcomeView();
 
-let name = '';
+function render() {
+  gameContent.textContent = '';
+  
+  if (gameState.activeView === 'play') {
+    gameContent.appendChild(playView(gameState, stateUpdate));
+  } else if (gameState.activeView === 'endGame') {
+    gameContent.appendChild(endGameView(gameState, stateUpdate));
+  } else {
+    gameContent.appendChild(welcomeView(gameState, stateUpdate));
+  }
+}
 
-const nameInput = document.createElement('input');
-nameInput.addEventListener('input', event => {
-  name = event.target.value;
-  console.log(name);
-});
-
-gameContent.appendChild(viewTitle);
-gameContent.appendChild(nameInputLabel);
-gameContent.appendChild(nameInput);
-
+render();
