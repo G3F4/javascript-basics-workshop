@@ -25,6 +25,11 @@ function welcomeView(state, stateUpdate) {
   nameInput.addEventListener('input', event => {
     stateUpdate({ name: event.target.value });
   });
+  setTimeout(() => {
+    nameInput.value = state.name;
+    nameInput.selectionStart = state.name.length;
+    nameInput.focus();
+  }, 0);
   
   const playButton = document.createElement('button');
   playButton.textContent = 'Play game!';

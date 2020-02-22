@@ -235,8 +235,10 @@ WarsawJs Workshop#41 - JavaScript basics
     - after `if` statement append `viewContent` to game content
 10. Check browser to see that input wont change value - everything else should work as previously
 
-## Restoring input focus and cursor position - browser event loop
+## Restoring input focus and cursor position
 
+- how browser paints
+- what is focus
 - delaying tasks
 
 1. Inside `welcomeView`, after creating input element add call to `setTimeout` global function
