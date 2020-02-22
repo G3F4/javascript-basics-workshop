@@ -71,6 +71,7 @@ WarsawJs Workshop#41 - JavaScript basics
     - To create element use `document.createElement`
         - Pass one argument to function with tagName with value `h1`
         - Set `textContent` attribute with value `Welcome to Hangman!`
+        - store returned value using `const` with name `viewTitle`
     - Append created header element to previously stored found element
         - To append children to element use method `appendChild`
             - `element.appendChild(childElement);`
