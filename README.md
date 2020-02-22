@@ -138,6 +138,8 @@ WarsawJs Workshop#41 - JavaScript basics
     
 ## Abstracting rendering
 
+- conditions
+- equality - `==` vs `===`
 - `if` statement
     
 1. Create mutable variable for storing active view name, with name `activeView`
@@ -160,17 +162,16 @@ WarsawJs Workshop#41 - JavaScript basics
 
 - contacting strings
 - and `else if`
-- and `else`
 
-1. Inside `welcomeView` create button with text `Play game!`
-2. Add event listener for event `click`
+1. Create function `playView`
+    - inside create `h1` element with text equal to `'Hi, ' + name`
+2. Inside `welcomeView` create button with text `Play game!`
+3. Add event listener for event `click`
     - on every click change value of `activeView` to `play`
     - call `render` function
-3. Create function `playView`
-    - inside create `h1` element with text equal to `'Hi, ' + name`
-4. Add new case inside `render` function for value `play`
+4. Add additional condition statement inside `render` using `else if`, check if `activeView` is equal `play`
     - call `playView` function
-4. Check browser, test if clicking in button with text `Play game!` changes view
+5. Check browser, test if clicking in button with text `Play game!` changes view
 
 ## Views loop
 
