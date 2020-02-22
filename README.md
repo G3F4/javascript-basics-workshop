@@ -139,34 +139,28 @@ WarsawJs Workshop#41 - JavaScript basics
 ## Abstracting rendering
 
 - `if` statement
-- and `else if`
-- and `else`
     
 1. Create mutable variable for storing active view name, with name `activeView`
     - initialize variable with value `welcome`
 2. Create function called `render` with no arguments
 3. Inside `render` function clear game content
+    - move line with setting `gameContent.textContent` to empty string
 4. Inside `render` check which view render
     - use `if` with `else if` and `else` statement
         - example `if` statement:
         ```javascript
         if (condition1) {
           // do something
-        } else if (condition2) {
-          // do something else
-        } else {
-          // if all conditions are false
-          // do something
         }
         ```
-    - create case for value `welcome`
-        - call `welcomeView` function
-    - create default fallback
-        - call `welcomeView` function
+    - if `activeView` is equal to `welcome` call `welcomeView`
 5. Check browser if there is still no changes in application visually
 
 ## Changing view
+
 - contacting strings
+- and `else if`
+- and `else`
 
 1. Inside `welcomeView` create button with text `Play game!`
 2. Add event listener for event `click`
