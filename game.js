@@ -1,3 +1,7 @@
+import welcomeView from './views/welcomeView.js';
+import playView from './views/playView.js';
+import endGameView from './views/endGameView.js';
+
 console.log('game script loaded');
 
 const persistedGameState = localStorage.getItem('gameState');
@@ -13,9 +17,11 @@ const gameState = persistedGameState ? JSON.parse(persistedGameState) : {
 };
 
 function stateUpdate(newGameState) {
-  Object.assign(gameState, newGameState);
-  localStorage.setItem('gameState', JSON.stringify(gameState));
-  render();
+  setTimeout(() => {
+    Object.assign(gameState, newGameState);
+    localStorage.setItem('gameState', JSON.stringify(gameState));
+    render();
+  });
 }
 
 function render() {
