@@ -1,4 +1,4 @@
-const allLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+import { allLetters, viewIds } from '../constants.js';
 
 function renderTitle(state) {
   const hiMessage = document.createElement('h1');
@@ -45,7 +45,7 @@ function renderPhrase(state, stateUpdate) {
   });
 
   if (phraseLettersVisibleCount === state.secretPhrase.length) {
-    stateUpdate({ activeView: 'endGame', selectedLetters: [] });
+    stateUpdate({ activeView: viewIds.endGame, selectedLetters: [] });
   }
 
   return phraseLettersContainer;
@@ -80,7 +80,7 @@ function renderActions(state, stateUpdate) {
 
   giveUpButton.textContent = `Give up`;
   giveUpButton.addEventListener('click', () => {
-    stateUpdate({ activeView: 'endGame' });
+    stateUpdate({ activeView: viewIds.endGame });
   });
 
   container.append(giveUpButton);

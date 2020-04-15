@@ -1,10 +1,5 @@
-const phrases = ['aaa'];
-
-function randomPhrase() {
-  const phraseIndex = Math.floor(Math.random() * phrases.length);
-
-  return phrases[phraseIndex];
-}
+import { viewIds } from '../constants.js';
+import randomPhrase from '../utils/randomPhrase.js';
 
 function renderTitle() {
   const viewTitle = document.createElement('h1');
@@ -42,7 +37,7 @@ function renderActions(state, stateUpdate) {
   playButton.textContent = 'Play game!';
   playButton.addEventListener('click', () => {
     stateUpdate({
-      activeView: 'play',
+      activeView: viewIds.play,
       secretPhrase: randomPhrase(),
       mistakes: 0, selectedLetters: [],
     });

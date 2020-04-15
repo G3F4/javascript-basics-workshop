@@ -1,3 +1,5 @@
+import { viewIds } from '../constants.js';
+
 function renderTitle() {
   const endGameHeader = document.createElement('h1');
 
@@ -20,7 +22,7 @@ function renderActions(state, stateUpdate) {
 
   playAgain.textContent = `Play again`;
   playAgain.addEventListener('click', () => {
-    stateUpdate({ activeView: 'welcome' });
+    stateUpdate({ activeView: viewIds.welcome });
   });
 
   container.append(playAgain);

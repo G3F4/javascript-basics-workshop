@@ -1,6 +1,7 @@
 import welcomeView from './views/welcomeView.js';
 import playView from './views/playView.js';
 import endGameView from './views/endGameView.js';
+import { viewIds } from './constants.js';
 
 console.log('game script loaded');
 
@@ -10,7 +11,7 @@ const gameContent = document.getElementById('gameContent');
 
 const gameState = persistedGameState ? JSON.parse(persistedGameState) : {
   name: '',
-  activeView: 'welcome',
+  activeView: viewIds.welcome,
   selectedLetters: [],
   secretPhrase: '',
   mistakes: 0,
@@ -20,23 +21,30 @@ function stateUpdate(newGameState) {
   setTimeout(() => {
     Object.assign(gameState, newGameState);
     localStorage.setItem('gameState', JSON.stringify(gameState));
-    render();
+    render(gameState, stateUpdate);
   });
 }
 
-function render() {
-  gameContent.textContent = '';
-  let viewContent;
-  
-  if (gameState.activeView === 'welcome') {
-    viewContent = welcomeView(gameState, stateUpdate);
-  } else if (gameState.activeView === 'play') {
-    viewContent = playView(gameState, stateUpdate);
-  } else {
-    viewContent = endGameView(gameState, stateUpdate);
-  }
-  
-  gameContent.appendChild(viewContent);
+function clearNode(node) {
+  node.textContent = '';
 }
 
-render();
+const views = {
+  [viewIds.welcome]: welcomeView,
+  [viewIds.play]: playView,
+  [viewIds.endGame]: endGameView,
+};
+
+function getActiveView(activeView) {
+  return views[activeView];
+}
+
+function render(state, stateUpdate) {
+  const view = getActiveView(state.activeView);
+
+  clearNode(gameContent);
+  
+  gameContent.appendChild(view(state, stateUpdate));
+}
+
+render(gameState, stateUpdate);
