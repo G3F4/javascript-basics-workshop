@@ -18,9 +18,24 @@ function welcomeView() {
         console.log(name);
     });
 
+    const playButton = document.createElement('button');
+    playButton.textContent = 'Play game!';
+    playButton.addEventListener('click', () => {
+        activeView = 'play';
+        render();
+    });
+
     gameContent.appendChild(viewTitle);
     gameContent.appendChild(nameInputLabel);
     gameContent.appendChild(nameInput);
+    gameContent.appendChild(playButton);
+}
+
+function playView() {
+    const hiMessage = document.createElement('h1');
+    hiMessage.textContent = `Hi, ${name}`;
+
+    gameContent.appendChild(hiMessage);
 }
 
 function render() {
@@ -28,6 +43,8 @@ function render() {
 
     if (activeView === 'welcome') {
         welcomeView();
+    } else if (activeView === 'play') {
+        playView();
     }
 }
 
