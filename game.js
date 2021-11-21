@@ -6,20 +6,22 @@ const gameContent = document.getElementById('gameContent');
 
 gameContent.textContent = '';
 
-const viewTitle = document.createElement('h1');
-viewTitle.textContent = `Welcome to Hangman!`;
+function welcomeView() {
+    const viewTitle = document.createElement('h1');
+    viewTitle.textContent = `Welcome to Hangman!`;
 
-gameContent.appendChild(viewTitle);
+    const nameInputLabel = document.createElement('div');
+    nameInputLabel.textContent = 'Enter your name';
 
-const nameInputLabel = document.createElement('div');
-nameInputLabel.textContent = 'Enter your name';
+    const nameInput = document.createElement('input');
+    nameInput.addEventListener('blur', event => {
+        name = event.target.value;
+        console.log(name);
+    });
 
-const nameInput = document.createElement('input');
-nameInput.addEventListener('blur', event => {
-    name = event.target.value;
-    console.log(name);
-});
+    gameContent.appendChild(viewTitle);
+    gameContent.appendChild(nameInputLabel);
+    gameContent.appendChild(nameInput);
+}
 
-gameContent.appendChild(viewTitle);
-gameContent.appendChild(nameInputLabel);
-gameContent.appendChild(nameInput);
+welcomeView();
