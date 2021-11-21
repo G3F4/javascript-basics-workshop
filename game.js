@@ -6,7 +6,16 @@ const gameState = {
     name: '',
     activeView: 'welcome',
     selectedLetters: [],
+    secretPhrase: '',
 };
+
+const phrases = ['test it like it is hot', 'super duper test'];
+
+function randomPhrase() {
+    const phraseIndex = Math.floor(Math.random() * phrases.length);
+
+    return phrases[phraseIndex];
+}
 
 function gameStateUpdate(newGameState) {
     Object.assign(gameState, newGameState);
@@ -31,7 +40,7 @@ function welcomeView(content, state, stateUpdate) {
     const playButton = document.createElement('button');
     playButton.textContent = 'Play game!';
     playButton.addEventListener('click', () => {
-        stateUpdate({ activeView: 'play' });
+        stateUpdate({ activeView: 'play', secretPhrase: randomPhrase(), selectedLetters: [] });
     });
 
     content.appendChild(viewTitle);
@@ -43,6 +52,16 @@ function welcomeView(content, state, stateUpdate) {
 function playView(content, state, stateUpdate) {
     const hiMessage = document.createElement('h1');
     hiMessage.textContent = `Hi, ${state.name}`;
+
+    const phraseLettersContainer = document.createElement('div');
+    const phraseLetters = state.secretPhrase.split('');
+    phraseLetters.forEach(phraseLetter => {
+        const phraseLetterSpan = document.createElement('span');
+        const phraseLetterVisible = phraseLetter === ' ' || state.selectedLetters.includes(phraseLetter);
+
+        phraseLetterSpan.textContent = phraseLetterVisible ? phraseLetter : '*';
+        phraseLettersContainer.appendChild(phraseLetterSpan);
+    });
 
     const buttonsContainer = document.createElement('div');
 
@@ -68,6 +87,7 @@ function playView(content, state, stateUpdate) {
     });
 
     content.appendChild(hiMessage);
+    content.appendChild(phraseLettersContainer);
     content.appendChild(buttonsContainer);
     content.appendChild(giveUpButton);
 }
