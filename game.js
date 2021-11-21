@@ -5,9 +5,14 @@ const gameState = {
     activeView: 'welcome',
 };
 
+function gameStateUpdate(newGameState) {
+    Object.assign(gameState, newGameState);
+    render();
+}
+
 const gameContent = document.getElementById('gameContent');
 
-function welcomeView() {
+function welcomeView(content, state, stateUpdate) {
     const viewTitle = document.createElement('h1');
     viewTitle.textContent = `Welcome to Hangman!`;
 
@@ -15,63 +20,60 @@ function welcomeView() {
     nameInputLabel.textContent = 'Enter your name';
 
     const nameInput = document.createElement('input');
+    nameInput.value = state.name;
     nameInput.addEventListener('blur', event => {
-        name = event.target.value;
-        console.log(name);
+        stateUpdate({ name: event.target.value });
     });
 
     const playButton = document.createElement('button');
     playButton.textContent = 'Play game!';
     playButton.addEventListener('click', () => {
-        gameState.activeView = 'play';
-        render();
+        stateUpdate({ activeView: 'play' });
     });
 
-    gameContent.appendChild(viewTitle);
-    gameContent.appendChild(nameInputLabel);
-    gameContent.appendChild(nameInput);
-    gameContent.appendChild(playButton);
+    content.appendChild(viewTitle);
+    content.appendChild(nameInputLabel);
+    content.appendChild(nameInput);
+    content.appendChild(playButton);
 }
 
-function playView() {
+function playView(content, state, stateUpdate) {
     const hiMessage = document.createElement('h1');
-    hiMessage.textContent = `Hi, ${name}`;
+    hiMessage.textContent = `Hi, ${state.name}`;
 
     const giveUpButton = document.createElement('button');
     giveUpButton.textContent = `Give up`;
     giveUpButton.addEventListener('click', () => {
-        gameState.activeView = 'endGame';
-        render();
+        stateUpdate({ activeView: 'endGame' });
     });
 
-    gameContent.appendChild(hiMessage);
-    gameContent.appendChild(giveUpButton);
+    content.appendChild(hiMessage);
+    content.appendChild(giveUpButton);
 }
 
-function endGameView() {
+function endGameView(content, state, stateUpdate) {
     const endGameHeader = document.createElement('h1');
     endGameHeader.textContent = 'Game finished!';
 
     const playAgain = document.createElement('button');
     playAgain.textContent = `Play again`;
     playAgain.addEventListener('click', () => {
-        gameState.activeView = 'welcome';
-        render();
+        stateUpdate({ activeView: 'welcome' });
     });
 
-    gameContent.appendChild(endGameHeader);
-    gameContent.appendChild(playAgain);
+    content.appendChild(endGameHeader);
+    content.appendChild(playAgain);
 }
 
 function render() {
     gameContent.textContent = '';
 
     if (gameState.activeView === 'welcome') {
-        welcomeView();
+        welcomeView(gameContent, gameState, gameStateUpdate);
     } else if (gameState.activeView === 'play') {
-        playView();
+        playView(gameContent, gameState, gameStateUpdate);
     } else {
-        endGameView();
+        endGameView(gameContent, gameState, gameStateUpdate);
     }
 }
 
