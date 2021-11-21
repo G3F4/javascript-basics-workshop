@@ -7,6 +7,7 @@ const gameState = {
     activeView: 'welcome',
     selectedLetters: [],
     secretPhrase: '',
+    mistakes: 0,
 };
 
 const phrases = ['test it like it is hot', 'super duper test'];
@@ -40,7 +41,7 @@ function welcomeView(content, state, stateUpdate) {
     const playButton = document.createElement('button');
     playButton.textContent = 'Play game!';
     playButton.addEventListener('click', () => {
-        stateUpdate({ activeView: 'play', secretPhrase: randomPhrase(), selectedLetters: [] });
+        stateUpdate({ activeView: 'play', secretPhrase: randomPhrase(), selectedLetters: [], mistakes: 0 });
     });
 
     content.appendChild(viewTitle);
@@ -72,8 +73,20 @@ function playView(content, state, stateUpdate) {
         letterButton.disabled = letterSelected;
         letterButton.textContent = letter;
         letterButton.addEventListener('click', () => {
+            const mistake = !state.secretPhrase.includes(letter);
+            const selectedLetters = state.selectedLetters.concat(letter);
+            const allLettersVisible = state.secretPhrase.split('').every(letter => {
+                if (letter === ' ') {
+                    return true;
+                }
+
+                return selectedLetters.includes(letter);
+            });
+
             stateUpdate({
-                selectedLetters: state.selectedLetters.concat(letter),
+                selectedLetters,
+                mistakes: mistake ? state.mistakes + 1 : state.mistakes,
+                activeView: allLettersVisible ? 'end' : 'play',
             });
         });
 
@@ -96,6 +109,9 @@ function endGameView(content, state, stateUpdate) {
     const endGameHeader = document.createElement('h1');
     endGameHeader.textContent = 'Game finished!';
 
+    const gameScore = document.createElement('h3');
+    gameScore.textContent = `You made ${state.mistakes} mistakes`;
+
     const playAgain = document.createElement('button');
     playAgain.textContent = `Play again`;
     playAgain.addEventListener('click', () => {
@@ -103,6 +119,7 @@ function endGameView(content, state, stateUpdate) {
     });
 
     content.appendChild(endGameHeader);
+    content.appendChild(gameScore);
     content.appendChild(playAgain);
 }
 
