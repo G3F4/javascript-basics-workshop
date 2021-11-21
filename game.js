@@ -1,5 +1,7 @@
 console.log('game script loaded');
 
+let name = '';
+
 const gameContent = document.getElementById('gameContent');
 
 gameContent.textContent = '';
@@ -14,7 +16,8 @@ nameInputLabel.textContent = 'Enter your name';
 
 const nameInput = document.createElement('input');
 nameInput.addEventListener('blur', event => {
-    console.log(event.target.value);
+    name = event.target.value;
+    console.log(name);
 });
 
 gameContent.appendChild(viewTitle);
